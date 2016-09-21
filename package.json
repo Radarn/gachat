@@ -1,0 +1,39 @@
+{
+  "name": "gachat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Radarn/gachat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Radarn/gachat/issues"
+  },
+  "homepage": "https://github.com/Radarn/gachat#readme",
+  "devDependencies": {
+    "body-parser": "^1.15.2",
+    "browser-sync": "^2.16.0",
+    "convert-source-map": "^1.3.0",
+    "each-async": "^1.1.1",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^1.0.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "method-override": "^2.3.6",
+    "mongodb": "^2.2.10",
+    "mongoose": "^4.6.1",
+    "rimraf": "^2.5.4",
+    "slash": "^1.0.0",
+    "win-spawn": "^2.0.0"
+  }
+}
