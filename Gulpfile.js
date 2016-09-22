@@ -2,18 +2,21 @@ var gulp = require('gulp'),
     sass = require('gulp-ruby-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
     browserSync = require('browser-sync').create();
 
+require('./gulp/tasks/build-js-templates')();
+require('./gulp/tasks/build-js')();
 
-gulp.task('serve', ['styles'], function() {
+gulp.task('serve', ['styles', 'build-js'], function() {
 
     browserSync.init({
-        server: "./server.js"
+        server: "./"
     });
 
     gulp.watch("public/sass/*.scss", ['styles']);
-    gulp.watch("public/*.html").on('change', browserSync.reload);
+    gulp.watch("./index.html").on('change', browserSync.reload);
+    gulp.watch("public/js/**/*.js").on('change', browserSync.reload);
     gulp.watch("public/templates/*.html").on('change', browserSync.reload);
 });
 

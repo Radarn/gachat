@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Gachat - Chat room for gamers</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="public/vendor/angular-material/angular-material.min.css">
+	<link rel="stylesheet" type="text/css" href="public/css/main.min.css">
+</head>
+<body ng-app="gachat">
+	<md-content class="md-padding">
+	    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+	      <md-nav-item md-nav-click="goto('page1')" name="page1">Page One</md-nav-item>
+	      <md-nav-item md-nav-click="goto('page2')" name="page2">Page Two</md-nav-item>
+	      <md-nav-item md-nav-click="goto('page3')" name="page3">Page Three</md-nav-item>
+	      <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo
+	      <md-nav-item md-nav-sref="app.page4" name="page4">Page Four</md-nav-item>
+	      <md-nav-item md-nav-href="#page5" name="page5">Page Five</md-nav-item>
+	      -->
+	    </md-nav-bar>
+	  </md-content>
+	<div layout="row">
+		<div ui-view></div>
+	</div>
+
+	<script src="public/vendor/angular/angular.min.js"></script>
+	<script src="public/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="public/vendor/angular-material/angular-material.min.js"></script>
+	<script src="public/vendor/angular-animate/angular-animate.min.js"></script>
+	<script src="public//vendor/angular-aria/angular-aria.min.js"></script>
+	<script src="/dist/js/app.js"></script>
+</body>
+</html>

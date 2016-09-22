@@ -1,2 +1,4 @@
 node_modules
 public/vendor
+.sass-cache
+.sass-cache/*

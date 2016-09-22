@@ -1,0 +1,1 @@
+angular.module('gachat').run(['$templateCache', function($templateCache) {$templateCache.put('partial-home.html','<div layout="column">\n\t<h1>hej</h1>\n</div>');}]);
