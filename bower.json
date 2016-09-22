@@ -1,0 +1,22 @@
+{
+  "name": "gachat",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Radarn"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Radarn/gachat",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "^0.3.1",
+    "angular": "1.5.8"
+  }
+}
