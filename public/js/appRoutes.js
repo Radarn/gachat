@@ -11,7 +11,9 @@ angular.module('gachat')
         // HOME STATES AND NESTED VIEWS ========================================
         .state('home', {
             url: '/home',
-            templateUrl: 'partial-home.html'
+            templateUrl: 'partial-home.html',
+            controller: 'DashboardCtrl',
+            controllerAs: '$ctrl'
         })
         
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================

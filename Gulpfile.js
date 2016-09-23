@@ -9,15 +9,18 @@ require('./gulp/tasks/build-js-templates')();
 require('./gulp/tasks/build-js')();
 
 gulp.task('serve', ['styles', 'build-js'], function() {
-
+    console.log("HEHEJE")
     browserSync.init({
         server: "./"
     });
 
     gulp.watch("public/sass/*.scss", ['styles']);
     gulp.watch("./index.html").on('change', browserSync.reload);
-    gulp.watch("public/js/**/*.js").on('change', browserSync.reload);
-    gulp.watch("public/templates/*.html").on('change', browserSync.reload);
+    gulp.watch("public/js/**/*.js", ['build-js']);
+    gulp.watch("dist/js/app.js").on('change', browserSync.reload);
+    gulp.watch("public/templates/*.html", ['build-js']);
+    gulp.watch("public/tmp/templates.js").on('change', browserSync.reload);
+
 });
 
 gulp.task('styles', function() {

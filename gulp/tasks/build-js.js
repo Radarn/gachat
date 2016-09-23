@@ -1,5 +1,5 @@
 var gulp        = require('gulp');
-//var browserSync = require('browser-sync').create();
+var browserSync = require('browser-sync').create();
 var sourcemaps  = require('gulp-sourcemaps');
 var ngAnnotate  = require('gulp-ng-annotate');
 var concat      = require('gulp-concat');
@@ -25,7 +25,7 @@ module.exports = function(){
             .pipe(ngAnnotate())
             .pipe(concat('app.js'))
             .pipe(sourcemaps.write())
-            .pipe(gulp.dest('./dist/js'));
-            //.pipe(browserSync.stream());
+            .pipe(gulp.dest('./dist/js'))
+            .pipe(browserSync.reload({stream:true}));
     });
 };
