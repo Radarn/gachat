@@ -3,13 +3,14 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     rename = require('gulp-rename'),
+    babel = require('gulp-babel'),
     browserSync = require('browser-sync').create();
 
 require('./gulp/tasks/build-js-templates')();
 require('./gulp/tasks/build-js')();
 
 gulp.task('serve', ['styles', 'build-js'], function() {
-    console.log("HEHEJE")
+
     browserSync.init({
         server: "./"
     });
@@ -17,6 +18,7 @@ gulp.task('serve', ['styles', 'build-js'], function() {
     gulp.watch("public/sass/*.scss", ['styles']);
     gulp.watch("./index.html").on('change', browserSync.reload);
     gulp.watch("public/js/**/*.js", ['build-js']);
+    gulp.watch("src/js/app.js", ['es6']);
     gulp.watch("dist/js/app.js").on('change', browserSync.reload);
     gulp.watch("public/templates/*.html", ['build-js']);
     gulp.watch("public/tmp/templates.js").on('change', browserSync.reload);
@@ -30,6 +32,14 @@ gulp.task('styles', function() {
     .pipe(minifycss())
     .pipe(gulp.dest('public/css'))
     .pipe(browserSync.stream());
+});
+
+gulp.task('es6', () => {
+    return gulp.src('src/js/app.js')
+        .pipe(babel({
+            presets: ['angular']
+        }))
+        .pipe(gulp.dest('dist/js/'))
 });
 
 gulp.task('default', ['serve'], function() {

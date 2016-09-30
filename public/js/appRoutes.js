@@ -4,21 +4,25 @@ angular.module('gachat')
 
 .config(function($stateProvider, $urlRouterProvider) {
     
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/signup');
     
     $stateProvider
         
         // HOME STATES AND NESTED VIEWS ========================================
-        .state('home', {
-            url: '/home',
-            templateUrl: 'partial-home.html',
-            controller: 'DashboardCtrl',
+        .state('signUp', {
+            url: '/signup',
+            templateUrl: 'signup.html',
+            controller: 'SignUpCtrl',
             controllerAs: '$ctrl'
         })
         
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('about', {
-            // we'll get to this in a bit       
-        });
-        
+            url: '/about',
+            templateUrl: 'about.html',
+            controller: function() {
+                console.log("about controller");
+            }   
+        })
+    
 });

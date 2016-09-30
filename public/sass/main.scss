@@ -1,5 +1,9 @@
-/*$color: black;
+.landing-page {
+	a {
+		transition: 0.25s all linear;
+		&:hover {
+			opacity: 0.5;
 
-body {
-  background-color : $color;
-}*/
+		}
+	}
+}

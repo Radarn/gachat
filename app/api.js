@@ -20,4 +20,25 @@ module.exports = function(app) {
 		    res.json(nerds); // return all nerds in JSON format
 		});
 	});
+
+	router.route('/api/users')
+
+	.get(function(req, res) {
+		ChatMessage.find(function(err, messages) {
+		    if (err)
+		        res.send(err);
+
+		    res.json(nerds); // return all nerds in JSON format
+		});
+	})
+
+	.post(function(req, res) {
+
+		User.create(newUser, function(err, user) {
+			console.log(user)
+			res.send(´Success! ${user} was created!´)
+		})
+		
+	});
+	
 };

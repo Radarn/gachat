@@ -25,7 +25,7 @@ module.exports = function(){
             .pipe(ngAnnotate())
             .pipe(concat('app.js'))
             .pipe(sourcemaps.write())
-            .pipe(gulp.dest('./dist/js'))
+            .pipe(gulp.dest('./src/js'))
             .pipe(browserSync.reload({stream:true}));
     });
 };
