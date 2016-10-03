@@ -4,7 +4,7 @@ angular.module('gachat')
 
 .config(function($stateProvider, $urlRouterProvider) {
     
-    $urlRouterProvider.otherwise('/signup');
+    $urlRouterProvider.otherwise('/login');
     
     $stateProvider
         
@@ -12,7 +12,21 @@ angular.module('gachat')
         .state('signUp', {
             url: '/signup',
             templateUrl: 'signup.html',
-            controller: 'SignUpCtrl',
+            controller: 'AuthenticationCtrl',
+            controllerAs: '$ctrl'
+        })
+
+        .state('logIn', {
+            url: '/login',
+            templateUrl: 'login.html',
+            controller: 'AuthenticationCtrl',
+            controllerAs: '$ctrl'
+        })
+
+        .state('home', {
+            url: '/home',
+            templateUrl: 'home.html',
+            controller: 'DashboardCtrl',
             controllerAs: '$ctrl'
         })
         

@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     minifycss = require('gulp-minify-css'),
     rename = require('gulp-rename'),
     babel = require('gulp-babel'),
+    //gulp-ts = require('gulp-ts'),
     browserSync = require('browser-sync').create();
 
 require('./gulp/tasks/build-js-templates')();
@@ -36,12 +37,15 @@ gulp.task('styles', function() {
 
 gulp.task('es6', () => {
     return gulp.src('src/js/app.js')
-        .pipe(babel({
-            presets: ['angular']
-        }))
         .pipe(gulp.dest('dist/js/'))
 });
 
 gulp.task('default', ['serve'], function() {
 
 });
+
+/*gulp.task('typescript', function() {
+  gulp.src('source.ts')
+    .pipe(ts())
+    .pipe(gulp.dest('out'));
+});*/
