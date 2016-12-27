@@ -1,4 +1,3 @@
 'use strict';
 
-angular.module('gachat', ['ui.router']);
-
+angular.module('gachat', ['ui.router', 'ngFileUpload']);

@@ -4,21 +4,20 @@
 	angular.module('gachat')
 
 	.controller('DashboardCtrl', ['$state', 'AuthenticationFactory', '$location', function($state, AuthenticationFactory, $location) {
-		var $ctrl = this;
-		
-		console.log("this is DashboardCtrl ctrl");
+		const $ctrl = this;
 
-		$ctrl.getUser = getUser;
-		
+		console.log("this is DashboardCtrl");
+
 		activate();
 
 		function activate() {
-			
+			$ctrl.userData = localStorage.getItem('User-data')
+			console.log($ctrl.userData);
+			//JSON.stringify(eval("(" + userData + ")"))
+			$ctrl.userData = JSON.parse($ctrl.userData)
+			$ctrl.userName = $ctrl.userData.data.email;
 		}
 
-		function getUser() {
-			//AuthenticationFactory.getCurrentUser()
-		}
-		
+
 	}]);
 }());

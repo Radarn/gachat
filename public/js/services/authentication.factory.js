@@ -32,22 +32,22 @@
 
         function loginUser(options){
             return HttpFactory.post({
-                url:'/api-token-auth/',
+                url:'/api/user/login',
                 data:options.data
             });
         }
 
         function getAuthToken(){
-            return $window.localStorage.getItem('WS.DATAWAREHOUSE.TOKEN');
+            return $window.localStorage.getItem('User-Data');
         }
 
         function setAuthToken(token){
             $http.defaults.headers.common.Authorization = 'Bearer '+ token;
-            return $window.localStorage.setItem('WS.DATAWAREHOUSE.TOKEN', token);
+            return $window.localStorage.setItem('User-Data', token);
         }
 
         function logout(){
-            return $window.localStorage.removeItem('WS.DATAWAREHOUSE.TOKEN');
+            return $window.localStorage.removeItem('User-Data');
         }
     }
 })();

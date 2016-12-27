@@ -9,25 +9,35 @@
 	<link rel="stylesheet" type="text/css" href="public/css/main.min.css">
 </head>
 <body ng-app="gachat" ng-cloak>
-		<nav>
-		    <div class="nav-wrapper">
-		    	<div class="container">
-				    <a href="#" class="brand-logo">Gachat</a>
-				
-				    <ul id="nav-mobile" class="right hide-on-med-and-down">
-			            <li><a href="#/about">About</a></li>
-				    </ul>
-		        </div>
-		    </div>
-		</nav>
+	<nav ng-controller="NavCtrl">
+	    <div class="nav-wrapper">
+	      <div class="container">
+	        <a href="#" class="brand-logo">Gachat</a>
+	        <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="#/about">About</a></li>
+							<li><a ng-click="$ctrl.logout()">Logout</a></li>
+	        </ul>
+	        </div>
+	    </div>
+	</nav>
 	<div class="container">
 		<div ui-view></div>
 	</div>
-	
+	<script type="text/javascript">
+		window.onbeforeunload = function() {
+	  localStorage.removeItem('User-Data');
+	  return '';
+		};
+	</script>
 	<script src="public/vendor/angular/angular.min.js"></script>
 	<script src="public/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="public/vendor/jquery/dist/jquery.min.js"></script>
 	<script src="public/vendor/materialize/dist/js/materialize.min.js"></script>
+
+	<script src="node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
+	<script src="node_modules/ng-file-upload/dist/ng-file-upload-all.js"></script>
+	<script src="node_modules/ng-file-upload/dist/ng-file-upload-shim.js"></script>
+
 	<script src="/dist/js/app.js"></script>
 </body>
 </html>

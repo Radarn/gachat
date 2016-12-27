@@ -3,36 +3,30 @@ var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose 	   = require('mongoose');
-var cors = require('cors');
 var api = require('./app/api');
-    
+
 var db = require('./config/db');
 
-var port = process.env.PORT || 8000; 
+var port = process.env.PORT || 8000;
 
-mongoose.connect(db.url); 
+mongoose.connect(db.url);
 
-app.use(bodyParser.json()); 
+app.use('/node_modules', express.static(`${__dirname}/node_modules`));
+app.use('/public', express.static(`${__dirname}/public`));
 
-app.use(bodyParser.json({ type: 'application/vnd.api+json' })); 
+app.use(methodOverride('X-HTTP-Method-Override'));
 
-app.use(bodyParser.urlencoded({ extended: true })); 
-
-app.use(cors());
-
-app.use(methodOverride('X-HTTP-Method-Override')); 
-
-//app.use(express.static(__dirname + '/public')); 
+//app.use(express.static(__dirname + '/public'));
 
 // routes ==================================================
 api(app); // configure our routes
 
-// start app ===============================================
+// start ap ===============================================
 // startup our app at http://localhost:8000
-app.listen(port);               
+app.listen(port);
 
-// shoutout to the user                     
+// shoutout to the user
 console.log('Listening on port ' + port);
 
-// expose app           
+// expose app
 //exports = module.exports = app;

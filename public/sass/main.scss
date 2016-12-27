@@ -3,7 +3,23 @@
 		transition: 0.25s all linear;
 		&:hover {
 			opacity: 0.5;
-
 		}
+	}
+}
+
+.chat-box {
+	height: 300px;
+	width: 80%;
+	overflow: scroll;
+}
+
+.message-border {
+	padding-bottom: 13px;
+	border-bottom: 1px solid grey;
+}
+
+.home-menu {
+	img {
+		height: 205px;
 	}
 }
