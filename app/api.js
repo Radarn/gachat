@@ -1,11 +1,14 @@
-var ChatMessage = require('./models/chatMessage.js');
-var express = require('express');
-var Users = require('./models/users.js');
-var bodyParser = require('body-parser');
-var cors = require('cors');
+const ChatMessage = require('./models/chatMessage.js');
+const express = require('express');
+const Users = require('./models/users.js');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart();
 const fs = require('fs-extra');
+
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 module.exports = function(app) {
 
@@ -13,17 +16,29 @@ module.exports = function(app) {
 	app.use(bodyParser.urlencoded({ extended: true }));
 	app.use(cors());
 
+	app.use(cookieParser());
+	app.use(session({secret: 'anystringoftext',
+		saveUninitialized: true, resave: true}));
+
 	var router = express.Router();
 
 	router.use(function(req, res, next) {
+			console.log("COOKIES", req.cookies)
+			console.log("SESSION ID", req.sessionID)
+			console.log("SESSION", req.session);
 	    console.log('Method passed to server: ' + req.method);
 	    next();
+	});
+
+	router.route('/cookie')
+
+	.get((req, res) => {
+		// NEED TO READ UP ON COOKIES IN GENERAL AND HOW THEY WORK!
 	});
 
 	router.route('/messages/:gameName')
 
 	.get(function(req, res) {
-		console.log(req.originalUrl);
 		ChatMessage.find({ 'type': req.originalUrl }, function(err, messages) {
 		    if (err)
 		        res.send(err);
@@ -33,8 +48,6 @@ module.exports = function(app) {
 	})
 
 	.post(function(req, res) {
-		console.log(req.body.newMessage)
-		console.log(req.body);
 		var incMessage = req.body.newMessage
 		var newMessage = ChatMessage({
 			message: incMessage,
@@ -51,7 +64,6 @@ module.exports = function(app) {
 	router.route('/users')
 
 	.post(function(req, res) {
-		console.log(req.body)
 		var newUser = {
 			email: req.body.email,
 			password: req.body.password
@@ -67,7 +79,6 @@ module.exports = function(app) {
 	router.route('/user/login')
 
 	.post(function(req, res) {
-		console.log(req.body)
 
 		Users.find(req.body, function(err, user) {
 			if (err) {
@@ -75,7 +86,6 @@ module.exports = function(app) {
 			}
 
 			if (user && user.length === 1) {
-				console.log("FOUND USER")
 				var userData = user[0]
 
 				res.json({

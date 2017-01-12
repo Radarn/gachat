@@ -10,11 +10,15 @@
 		$ctrl.createUser = createUser;
 		$ctrl.logUserIn = logUserIn;
 		$ctrl.checkForUser = checkForUser;
+		$ctrl.createCookie = createCookie;
 
 		activate();
 		function activate() {
 			$ctrl.loggedIn = false;
-			checkForUser();
+			$ctrl.currentUrl = $state.params.gameName;
+			if ($ctrl.currentUrl !== '/signup') {
+				checkForUser();
+			}
 		}
 
 		function checkForUser() {
@@ -32,13 +36,14 @@
 		function logUserIn() {
 			$ctrl.userLogIn = {
 				data: $ctrl.logIn,
-				url: "/api/user/login"
+				url: '/api/user/login'
 			}
 
 			HttpFactory.post($ctrl.userLogIn).then((res) => {
 				if (res.data._id) {
 					$ctrl.loggedIn = true;
 					localStorage.setItem('User-Data', JSON.stringify(res));
+					createCookie();
 					$location.url(['/home'])
 				} else {
 					alert("Wrong information! Please try again")
@@ -51,6 +56,16 @@
 			});
 		}
 
+		function createCookie() {
+			let cookieInfo = {
+				url: '/api/cookie'
+			}
+			HttpFactory.get(cookieInfo).then((res) => {
+				console.log('cookie response', res);
+				console.log(document.cookie);
+			});
+		}
+
 		function createUser() {
 			let newUser = {
 				data: $ctrl.newUser,
@@ -60,7 +75,7 @@
 			HttpFactory.post(newUser).then((res) => {
 				console.log(res.data);
 
-				$location.url(['/home'])
+				$location.url(['/login'])
 			});
 		}
 
