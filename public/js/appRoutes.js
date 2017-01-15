@@ -47,7 +47,7 @@ angular.module('gachat')
           controllerAs: '$ctrl'
         })
 
-        .state('profile.edit', {
+        .state('edit', {
           templateUrl: 'profile.edit.html',
           controller: 'ProfileCtrl',
           controllerAs: '$ctrl'

@@ -104,6 +104,7 @@ module.exports = function(app) {
 
 	router.route('/profile/edit/:id')
 	// Function should maybe be in its own export statement
+	// multipartMiddleware
 	.post(multipartMiddleware, (req, res) => {
 		const file = req.file;
 		const userId = req.body.userId;
