@@ -5,6 +5,10 @@
   opacity: 0.5;
 }
 
+.profile {
+  margin-top: 20px;
+}
+
 .chat-box {
   height: 300px;
   width: 80%;

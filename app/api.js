@@ -1,3 +1,5 @@
+'use strict';
+
 const ChatMessage = require('./models/chatMessage.js');
 const express = require('express');
 const Users = require('./models/users.js');
@@ -100,13 +102,20 @@ module.exports = function(app) {
 
 	});
 
-	router.route('/profile/edit')
-
+	router.route('/profile/edit/:id')
+	// Function should maybe be in its own export statement
 	.post(multipartMiddleware, (req, res) => {
 		const file = req.file;
 		const userId = req.body.userId;
 		console.log("User " + userId + " fs submitting ", file);
 	})
+
+	.delete(function(req, res) {
+		const userId = req.params.id;
+		Users.findOne({'_id': userId}).remove((err, data) => {
+			res.json(data)
+		})
+	});
 
 	app.use('/api', router);
 

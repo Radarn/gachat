@@ -15,7 +15,7 @@
 		activate();
 		function activate() {
 			$ctrl.loggedIn = false;
-			$ctrl.currentUrl = $state.params.gameName;
+			$ctrl.currentUrl = $state.current.url;
 			if ($ctrl.currentUrl !== '/signup') {
 				checkForUser();
 			}

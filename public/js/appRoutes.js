@@ -9,6 +9,7 @@ angular.module('gachat')
     $stateProvider
 
         // HOME STATES AND NESTED VIEWS ========================================
+
         .state('signUp', {
             url: '/signup',
             templateUrl: 'signup.html',
@@ -40,12 +41,17 @@ angular.module('gachat')
             controllerAs: '$ctrl'
         })
 
-        .state('editProfile', {
-          url: '/edit-profile',
-          templateUrl: 'edit-profile.html',
-          controller: 'EditProfileCtrl'
+        .state('profile', {
+          templateUrl: 'profile.html',
+          controller: 'ProfileCtrl',
+          controllerAs: '$ctrl'
         })
 
+        .state('profile.edit', {
+          templateUrl: 'profile.edit.html',
+          controller: 'ProfileCtrl',
+          controllerAs: '$ctrl'
+        })
 
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('about', {
