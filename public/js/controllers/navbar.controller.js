@@ -3,7 +3,7 @@
 
 	angular.module('gachat')
 
-	.controller('NavCtrl', ['$state', 'AuthenticationFactory', '$location', function($state, AuthenticationFactory, $location) {
+	.controller('NavCtrl', ['$state', 'AuthenticationService', '$location', function($state, AuthenticationService, $location) {
 		const $ctrl = this;
 
 		console.log("this is NavCtrl");

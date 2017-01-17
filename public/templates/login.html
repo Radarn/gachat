@@ -1,22 +1,24 @@
 <div class="row">
-      <form class="col s6 offset-s4">
+      <form class="col s6 offset-s4" ng-submit="$ctrl.onSubmit()">
             <div class="row">
                   <div class="input-field col s8">
-                        <input placeholder="Email" id="email" type="text" class="validate" ng-model="$ctrl.logIn.email">
+                        <input placeholder="Email" id="email" type="text" class="validate" ng-model="$ctrl.credentials.email">
                         <label for="email">Email Adress</label>
                   </div>
             </div>
             <div class="row">
                   <div class="input-field col s8">
-                      <input placeholder="Password" id="password" type="text" class="validate" ng-model="$ctrl.logIn.password">
+                      <input placeholder="Password" id="password" type="text" class="validate" ng-model="$ctrl.credentials.password">
                       <label for="password">Password</label>
                   </div>
             </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="$ctrl.logUserIn()">Log in
+            <div class="row">
+              <button class="btn waves-effect waves-light" type="submit" name="action">Log in
                   <i class="material-icons right">send</i>
-            </button>
-            <a class="btn waves-effect waves-light" type="submit" name="action" href="#/signup">Create new user
+              </button>
+            </form>
+            <a class="btn waves-effect waves-light" name="action" href="#/signup">Create new user
                   <i class="material-icons right">send</i>
             </a>
-      </form>
+          </div>
 </div>

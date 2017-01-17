@@ -13,14 +13,14 @@ angular.module('gachat')
         .state('signUp', {
             url: '/signup',
             templateUrl: 'signup.html',
-            controller: 'AuthenticationCtrl',
+            controller: 'RegisterCtrl',
             controllerAs: '$ctrl'
         })
 
         .state('logIn', {
             url: '/login',
             templateUrl: 'login.html',
-            controller: 'AuthenticationCtrl',
+            controller: 'LoginCtrl',
             controllerAs: '$ctrl',
             access: {
               isFree: true
@@ -30,7 +30,7 @@ angular.module('gachat')
         .state('home', {
             url: '/home',
             templateUrl: 'home.html',
-            controller: 'AuthenticationCtrl',
+            controller: 'DashboardCtrl',
             controllerAs: '$ctrl'
         })
 

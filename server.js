@@ -1,13 +1,15 @@
-var express        = require('express');
-var app            = express();
-var bodyParser     = require('body-parser');
-var methodOverride = require('method-override');
-var mongoose 	   = require('mongoose');
-var api = require('./app/api');
+const express        = require('express');
+const app            = express();
+const bodyParser     = require('body-parser');
+const methodOverride = require('method-override');
+const mongoose 	   = require('mongoose');
+const passport = require('passport');
+const api = require('./app/api');
 
-var db = require('./config/db');
+const db = require('./config/db');
+require('./config/passport');
 
-var port = process.env.PORT || 8000;
+const port = process.env.PORT || 8000;
 
 mongoose.connect(db.url);
 
@@ -18,7 +20,11 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 //app.use(express.static(__dirname + '/public'));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 // routes ==================================================
+
 api(app); // configure our routes
 
 // start ap ===============================================

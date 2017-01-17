@@ -8,6 +8,12 @@ const cors = require('cors');
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart();
 const fs = require('fs-extra');
+const jwt = require('express-jwt');
+const auth = jwt({
+  secret: 'MY_SECRET',
+  userProperty: 'payload'
+}); // Dont keep secret in the code!
+const authController = require('./controllers/authentication.controller.js');
 
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -65,7 +71,9 @@ module.exports = function(app) {
 
 	router.route('/users')
 
-	.post(function(req, res) {
+  .post(authController.register)
+
+	/*.post(authController.register, (req, res) => {
 		var newUser = {
 			email: req.body.email,
 			password: req.body.password
@@ -76,11 +84,13 @@ module.exports = function(app) {
 			res.send("Success! " + user + " was created!")
 		})
 
-	});
+	});*/
 
 	router.route('/user/login')
 
-	.post(function(req, res) {
+  .post(authController.login)
+
+	/*.post((req, res) => {
 
 		Users.find(req.body, function(err, user) {
 			if (err) {
@@ -100,7 +110,7 @@ module.exports = function(app) {
 			}
 		})
 
-	});
+	});*/
 
 	router.route('/profile/edit/:id')
 	// Function should maybe be in its own export statement

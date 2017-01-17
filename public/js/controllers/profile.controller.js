@@ -3,33 +3,19 @@
 
 	angular.module('gachat')
 
-	.controller('ProfileCtrl', ['Upload', '$state', '$http', '$location', 'HttpFactory',
-                          function(Upload, $state, $http, $location, HttpFactory) {
+	.controller('ProfileCtrl', ['Upload', 'AuthenticationService', '$http', '$location', 'HttpFactory',
+                          function(Upload, AuthenticationService, $http, $location, HttpFactory) {
 		const $ctrl = this;
 
 		$ctrl.upload = upload;
-		$ctrl.checkForUser = checkForUser;
 		$ctrl.deleteProfile = deleteProfile;
 
-		console.log("this is EditProfileCtrl");
+		console.log("this is ProfileCtrl");
 
 		activate();
 
 		function activate() {
-			console.log($state)
-			$ctrl.user = JSON.parse(localStorage.getItem('User-Data')) || undefined;
-			checkForUser();
-		}
-
-		function checkForUser() {
-			if (localStorage['User-Data']) {
-				$ctrl.loggedIn = true;
-				//let userJsonObj = JSON.parse(localStorage.getItem('User-Data'))
-				$ctrl.currentUserName = $ctrl.user.data.email;
-			} else {
-				$ctrl.loggedIn = false;
-				$location.url(['/']);
-			}
+			$ctrl.userName = AuthenticationService.currentUser().email;
 		}
 
 		function upload(e, file) {
