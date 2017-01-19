@@ -3,7 +3,8 @@
 
 	angular.module('gachat')
 
-	.controller('ChatCtrl', ['HttpFactory', '$state', '$location', function(HttpFactory, $state, $location) {
+	.controller('ChatCtrl', ['HttpFactory', '$state', '$location',
+	 	'AuthenticationService', function(HttpFactory, $state, $location, AuthenticationService) {
     const $ctrl = this;
 
 		console.log("this is ChatCtrl");
@@ -11,26 +12,17 @@
 		$ctrl.sendMessage = sendMessage;
 		$ctrl.getAllMessages = getAllMessages;
 		$ctrl.stripDate = stripDate;
-		$ctrl.checkForUser = checkForUser;
 
 		activate();
 
 		function activate() {
-			checkForUser();
 			$ctrl.messages = "";
 			$ctrl.currentUrl = $state.params.gameName;
-			$ctrl.userName = JSON.parse(localStorage.getItem('User-Data')).data.email;
-			getAllMessages();
-		}
-
-		function checkForUser() {
-			if (localStorage['User-Data']) {
-				$ctrl.loggedIn = true;
-				let userJsonObj = JSON.parse(localStorage.getItem('User-Data'))
-				$ctrl.currentUserName = userJsonObj.data.email;
+			if (!AuthenticationService.getToken()) {
+				$location.path('logIn');
 			} else {
-				$ctrl.loggedIn = false;
-				$location.url(['/']);
+				$ctrl.userName = AuthenticationService.currentUser().email;
+				getAllMessages()
 			}
 		}
 

@@ -12,8 +12,11 @@
 		activate();
 
 		function activate() {
-			$ctrl.userName = AuthenticationService.currentUser().email;
-			console.log($ctrl.userName)
+			if (!AuthenticationService.getToken()) {
+				$location.path('logIn');
+			} else {
+				$ctrl.userName = AuthenticationService.currentUser().email;
+			}
 		}
 	}]);
 }());

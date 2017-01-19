@@ -73,44 +73,10 @@ module.exports = function(app) {
 
   .post(authController.register)
 
-	/*.post(authController.register, (req, res) => {
-		var newUser = {
-			email: req.body.email,
-			password: req.body.password
-		}
-
-		Users.create(newUser, function(err, user) {
-			console.log(user)
-			res.send("Success! " + user + " was created!")
-		})
-
-	});*/
-
 	router.route('/user/login')
 
   .post(authController.login)
 
-	/*.post((req, res) => {
-
-		Users.find(req.body, function(err, user) {
-			if (err) {
-				res.send(err);
-			}
-
-			if (user && user.length === 1) {
-				var userData = user[0]
-
-				res.json({
-					email: req.body.email,
-					_id: userData._id
-				});
-			} else {
-				console.log("DID NOT FIND USER")
-				res.send(user)
-			}
-		})
-
-	});*/
 
 	router.route('/profile/edit/:id')
 	// Function should maybe be in its own export statement
