@@ -9,6 +9,8 @@
 
 		$ctrl.upload = upload;
 		$ctrl.deleteProfile = deleteProfile;
+		$ctrl.updateEmail = updateEmail;
+		$ctrl.updateBio = updateBio;
 
 		console.log("this is ProfileCtrl");
 
@@ -18,36 +20,36 @@
 			if (!AuthenticationService.getToken()) {
 				$location.path('logIn');
 			} else {
-				$ctrl.userName = AuthenticationService.currentUser().email;
-				console.log($ctrl.userName)
+				$ctrl.user = AuthenticationService.currentUser();
+				$ctrl.email = $ctrl.user.email;
 			}
 		}
 
 		function upload(e, file) {
-			console.log("FIRING");
-			console.log(e, file);
+			console.log("file", file)
 			if(file) {
 				Upload.upload({
-					url: '/api/profile/edit',
+					url: `http://localhost:8000/api/profile/edit`,
 					method: 'POST',
-					data: $ctrl.user.data._id
+					data: {email: $ctrl.email},
+					file: file
 				}).progress((evt) => {
 					console.log("firing");
 				}).success((data) => {
 					console.log("Success");
 				}).error((error) => {
+					console.log("Error")
 					console.log(error);
 				})
 			}
 		}
-
+		// THIS NEED TO BE RE WRITTES. NEW ENDPOINT. PARAMS
 		function deleteProfile() {
 			const result = confirm("Are you sure that you want to delete your account?")
 			if (result) {
-				const userId = $ctrl.user.data._id
 				let currentUser = {
-					data: $ctrl.user.data._id,
-					url: `/api/profile/edit/${userId}`
+					data: $ctrl.email,
+					url: `/api/profile/edit`
 				}
 				HttpFactory.delete(currentUser).then((res) => {
 					alert("Your account was successfully deleted");
@@ -55,6 +57,23 @@
 					$location.url(['/login']);
 				});
 			}
+		}
+
+		function updateEmail() {
+			console.log("updating email adress")
+			console.log("EMAIL", $ctrl.email)
+			const request = {
+				url: '/api/profile/updateEmail',
+				data: $ctrl.user
+			}
+
+			HttpFactory.post(request).then((res) => {
+				console.log(res)
+			});
+		}
+
+		function updateBio() {
+			console.log("updating bio")
 		}
 
 	}]);

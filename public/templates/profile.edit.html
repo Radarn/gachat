@@ -1,27 +1,32 @@
-
-  <div class="file-field input-field" ngf-select ng-model="$ctrl.user.file" name="file" ngf-pattern="'image/*'"
-    accept="image/*">
-      <div class="btn">
-        <span>File</span>
-        <input type="file">
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
-      </div>
+  <div class="row edit-profile">
+    <div class="file-field input-field col s12" ngf-select ng-model="$ctrl.user.file" name="file" ngf-pattern="'image/*'"
+      accept="image/*">
+        <div class="btn">
+          <span>File</span>
+          <input type="file">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+    </div>
   </div>
+  <button ng-click="$ctrl.upload(e, $ctrl.user.file)" class="btn waves-effect waves-light" type="submit" name="action">Upload Photo</button>
 
   <div class="row">
     <div class="input-field col s12">
-      <input id="textarea-username" type="text" class="validate" ng-model="$ctrl.user.username">
-      <label for="textarea-username">User name</label>
+      <input id="textarea-email" type="text" class="validate" ng-model="$ctrl.user.newEmail">
+      <label for="textarea-email">Email</label>
+      <button ng-click="$ctrl.updateEmail()" class="btn waves-effect waves-light" type="submit" name="action">Update Email Adress</button>
+      </div>
+    </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="input-field col s12">
+    <div class="input-field col s10">
       <textarea id="textarea-bio" class="materialize-textarea" length="120" ng-model="$ctrl.user.bio"></textarea>
       <label for="textarea-bio">Your bio</label>
     </div>
   </div>
-
-  <button ng-click="$ctrl.upload(e, $ctrl.user.file)" class="btn waves-effect waves-light" type="submit" name="action">Update</button>
+  <button ng-click="$ctrl.updateBio()" class="btn waves-effect waves-light" type="submit" name="action">Update Bio</button>
+  </div>

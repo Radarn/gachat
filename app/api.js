@@ -14,7 +14,7 @@ const auth = jwt({
   userProperty: 'payload'
 }); // Dont keep secret in the code!
 const authController = require('./controllers/authentication.controller.js');
-
+const profileController = require('./controllers/profile.controller.js');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
@@ -78,14 +78,9 @@ module.exports = function(app) {
   .post(authController.login)
 
 
-	router.route('/profile/edit/:id')
-	// Function should maybe be in its own export statement
-	// multipartMiddleware
-	.post(multipartMiddleware, (req, res) => {
-		const file = req.file;
-		const userId = req.body.userId;
-		console.log("User " + userId + " fs submitting ", file);
-	})
+	router.route('/profile/edit')
+
+	.post(multipartMiddleware, profileController.updatePhoto)
 
 	.delete(function(req, res) {
 		const userId = req.params.id;
@@ -93,6 +88,10 @@ module.exports = function(app) {
 			res.json(data)
 		})
 	});
+
+  router.route('/profile/updateEmail')
+
+  .post(profileController.updateEmail);
 
 	app.use('/api', router);
 

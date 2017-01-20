@@ -2,6 +2,8 @@
 
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const fs = require('fs-extra');
+const path = require('path');
 
 module.exports.profileRead = (req, res) => {
 
@@ -19,5 +21,60 @@ module.exports.profileRead = (req, res) => {
         res.status(200).json(user);
       });
   }
-
 };
+
+module.exports.updatePhoto = function(req, res) {
+  const file = req.files.file;
+  const email = req.body.email
+
+  console.log(`User ${email} is submitting`, file)
+  // NEED TO MAKE THIS UNIQUE
+  let uploadDate = new Date();
+
+  const tempPath = file.path;
+  const targetPath = path.join(__dirname, `../../uploads/${email}${uploadDate}${file.name}`);
+  const savePath = `/uploads/${email}${uploadDate}${file.name}`;
+
+  fs.rename(tempPath, targetPath, (err) => {
+    if (err) {
+      console.log(err)
+    } else {
+      User.findOne({email: email}, (err, userData) => {
+        if (!userData)
+          console.log(err)
+        let user = userData;
+        user.image = savePath;
+        user.save((err) => {
+          if (err)
+            console.log("Failed Save");
+            res.json({status: 500})
+
+          console.log("save successful");
+
+          res.json({status: 200})
+        })
+      });
+    }
+  });
+}
+
+module.exports.updateEmail = function(req, res) {
+  console.log("new email", req.body.newEmail)
+  const email = req.body.email
+  const newEmail = req.body.newEmail
+
+  User.findOne({email: email}, (err, userData) => {
+    if (err)
+      console.log("failed updateEmail")
+    let user = userData;
+    console.log("userData", user)
+    user.email = newEmail;
+
+    user.save((err) => {
+      if (err)
+        console.log("fail")
+
+      console.log("successfully updated email")
+    });
+  });
+}
