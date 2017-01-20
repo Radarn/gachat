@@ -82,12 +82,6 @@ module.exports = function(app) {
 
 	.post(multipartMiddleware, profileController.updatePhoto)
 
-	/*.delete(function(req, res) {
-		const userId = req.params.id;
-		Users.findOne({'_id': userId}).remove((err, data) => {
-			res.json(data)
-		})
-	});*/
 
   router.route('/profile/delete/:email')
 
