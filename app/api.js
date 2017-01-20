@@ -78,20 +78,24 @@ module.exports = function(app) {
   .post(authController.login)
 
 
-	router.route('/profile/edit')
+	router.route('/profile/uploadPhoto')
 
 	.post(multipartMiddleware, profileController.updatePhoto)
 
-	.delete(function(req, res) {
+	/*.delete(function(req, res) {
 		const userId = req.params.id;
 		Users.findOne({'_id': userId}).remove((err, data) => {
 			res.json(data)
 		})
-	});
+	});*/
 
   router.route('/profile/updateEmail')
 
   .post(profileController.updateEmail);
+
+  router.route('/profile/updateBio')
+
+  .post(profileController.updateBio);
 
 	app.use('/api', router);
 

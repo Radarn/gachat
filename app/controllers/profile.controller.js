@@ -59,7 +59,6 @@ module.exports.updatePhoto = function(req, res) {
 }
 
 module.exports.updateEmail = function(req, res) {
-  console.log("new email", req.body.newEmail)
   const email = req.body.email
   const newEmail = req.body.newEmail
 
@@ -75,6 +74,27 @@ module.exports.updateEmail = function(req, res) {
         console.log("fail")
 
       console.log("successfully updated email")
+    });
+  });
+}
+
+module.exports.updateBio = function(req, res) {
+  const email = req.body.email
+  const bio = req.body.bio
+  console.log("BIO", bio);
+
+  User.findOne({email: email}, (err, userData) => {
+    if (err)
+      console.log("failed update bio")
+    let user = userData;
+    user.bio = bio;
+    console.log("userData", user)
+
+    user.save((err) => {
+      if (err)
+        console.log("fail")
+
+      console.log("successfully updated bio")
     });
   });
 }
