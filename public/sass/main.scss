@@ -7,6 +7,23 @@
 	}
 }
 
+
+.unregistered-user-header {
+	margin-bottom: 20px;
+}
+
+.login {
+	.user-login {
+		@extend .unregistered-user-header;
+	}
+}
+
+.signup {
+	.create-new-user {
+		@extend .unregistered-user-header;
+	}
+}
+
 .profile {
 	margin-top: 20px;
 }

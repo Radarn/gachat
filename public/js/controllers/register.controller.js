@@ -15,6 +15,10 @@
 		activate();
 
 		function activate() {
+			$ctrl.user = AuthenticationService.currentUser();
+			if ($ctrl.user) {
+				$location.path('home');
+			}
 			$ctrl.credentials = {
 				email : "",
 				password: ""

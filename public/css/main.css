@@ -5,6 +5,10 @@
   opacity: 0.5;
 }
 
+.unregistered-user-header, .login .user-login, .signup .create-new-user {
+  margin-bottom: 20px;
+}
+
 .profile {
   margin-top: 20px;
 }
