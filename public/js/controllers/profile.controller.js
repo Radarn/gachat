@@ -43,20 +43,19 @@
 				})
 			}
 		}
-		// THIS NEED TO BE RE WRITTES. NEW ENDPOINT. PARAMS
+
 		function deleteProfile() {
-			const result = confirm("Are you sure that you want to delete your account?")
-			if (result) {
-				let currentUser = {
-					data: $ctrl.email,
-					url: `/api/profile/edit`
-				}
-				HttpFactory.delete(currentUser).then((res) => {
-					alert("Your account was successfully deleted");
-					localStorage.removeItem('User-Data');
-					$location.url(['/login']);
-				});
+			//const result = confirm("Are you sure that you want to delete your account?")
+			console.log("deleteing")
+			const request = {
+				url: `/api/profile/delete/${$ctrl.email}`
 			}
+			HttpFactory.delete(request).then((res) => {
+				alert("Your account was successfully deleted");
+				localStorage.removeItem('User-Data');
+				$location.url(['/login']);
+			});
+
 		}
 
 		function updateEmail() {

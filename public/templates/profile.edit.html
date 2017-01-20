@@ -23,10 +23,10 @@
   </div>
 
   <div class="row">
-    <div class="input-field col s10">
+    <div class="input-field col s12">
       <textarea id="textarea-bio" class="materialize-textarea" length="120" ng-model="$ctrl.user.bio"></textarea>
       <label for="textarea-bio">Your bio</label>
+      <button ng-click="$ctrl.updateBio()" class="btn waves-effect waves-light" type="submit" name="action">Update Bio</button>
     </div>
   </div>
-  <button ng-click="$ctrl.updateBio()" class="btn waves-effect waves-light" type="submit" name="action">Update Bio</button>
   </div>

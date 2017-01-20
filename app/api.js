@@ -89,6 +89,15 @@ module.exports = function(app) {
 		})
 	});*/
 
+  router.route('/profile/delete/:email')
+
+  .delete(function(req, res) {
+		const email = req.params.email;
+		Users.findOne({email: email}).remove((err, data) => {
+			res.json(data)
+		})
+	});
+
   router.route('/profile/updateEmail')
 
   .post(profileController.updateEmail);
