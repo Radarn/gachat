@@ -29,7 +29,7 @@
 			console.log("file", file)
 			if(file) {
 				Upload.upload({
-					url: `http://localhost:8000/api/profile/edit`,
+					url: `http://localhost:8000/api/profile/uploadPhoto`,
 					method: 'POST',
 					data: {email: $ctrl.email},
 					file: file
@@ -74,6 +74,14 @@
 
 		function updateBio() {
 			console.log("updating bio")
+			const request = {
+				url: '/api/profile/updateBio',
+				data: $ctrl.user
+			}
+
+			HttpFactory.post(request).then((res) => {
+				console.log(res)
+			});
 		}
 
 	}]);

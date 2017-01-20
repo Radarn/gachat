@@ -59,7 +59,6 @@ module.exports.updatePhoto = function(req, res) {
 }
 
 module.exports.updateEmail = function(req, res) {
-  console.log("new email", req.body.newEmail)
   const email = req.body.email
   const newEmail = req.body.newEmail
 
@@ -78,3 +77,70 @@ module.exports.updateEmail = function(req, res) {
     });
   });
 }
+
+module.exports.updateBio = function(req, res) {
+  const email = req.body.email
+  const bio = req.body.bio
+  console.log("BIO", bio);
+
+  User.findOne({email: email}, (err, userData) => {
+    if (err)
+      console.log("failed update bio")
+    let user = userData;
+    user.bio = bio;
+    console.log("userData", user)
+
+    user.save((err) => {
+      if (err)
+        console.log("fail")
+
+      console.log("successfully updated bio")
+    });
+  });
+}
+
+/*module.exports.updateUserInfo = function(req, res) {
+  switch (req.body.type) {
+    case 'UPDATE_EMAIL':
+      const email = req.body.email
+      const newEmail = req.body.newEmail
+
+      User.findOne({email: email}, (err, userData) => {
+        if (err)
+          console.log("failed updateEmail")
+        let user = userData;
+        console.log("userData", user)
+        user.email = newEmail;
+
+        user.save((err) => {
+          if (err)
+            console.log("fail")
+
+          console.log("successfully updated email")
+        });
+      });
+
+    case 'UPDATE_BIO':
+      let email = req.body.email
+      const bio = req.body.bio
+      console.log("BIO", bio);
+
+      User.findOne({email: email}, (err, userData) => {
+        if (err)
+          console.log("failed update bio")
+        let user = userData;
+        user.bio = bio;
+        console.log("userData", user)
+
+        user.save((err) => {
+          if (err)
+            console.log("fail")
+
+          console.log("successfully updated bio")
+        });
+      });
+
+      default:
+        return '';
+    }
+}*/
