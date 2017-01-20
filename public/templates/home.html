@@ -1,20 +1,43 @@
 <h1>Logged in as: <a ui-sref="profile">{{$ctrl.userName}}</a></h1>
 <div class="row home-menu">
 	<div class="col s3">
+		<div class="card">
+      <div class="card-image">
       	<a ng-href="#/chat/counter-strike:global-offensive"><img class="responsive-img" src="public/img/csgo.jpg"></a>
-      	<p>Counter-Strike: Global Offensive</p>
-	</div>
-    <div class="col s3">
-  		<a ng-href="#/chat/dota2"><img class="responsive-img" src="public/img/dota2.png"></a>
-        <p>Dota 2</p>
-    </div>
-
-    <div class="col s3">
-  		<a ng-href="#/chat/leagueoflegends"><img class="responsive-img" src="public/img/lol.jpeg"></a>
-  		<p>League of Legends</p>
       </div>
-     <div class="col s3">
-  		<a ng-href="#/chat/overwatch"><img class="responsive-img" src="public/img/overwatch.jpg"></a>
-  		<p>Overwatch</p>
+      <div class="card-content">
+        <p>Counter-Strike: Global Offensive</p>
+      </div>
+		</div>
 	</div>
+    <div class="col s3">
+			<div class="card">
+        <div class="card-image">
+        	<a ng-href="#/chat/dota2"><img class="responsive-img" src="public/img/dota2.png"></a>
+        </div>
+        <div class="card-content">
+          <p>Dota 2</p>
+        </div>
+			</div>
+    </div>
+    <div class="col s3">
+			<div class="card">
+        <div class="card-image">
+        	<a ng-href="#/chat/leagueoflegends"><img class="responsive-img" src="public/img/lol.jpeg"></a>
+        </div>
+        <div class="card-content">
+          <p>League of Legends</p>
+        </div>
+			</div>
+    </div>
+     <div class="col s3">
+			 <div class="card">
+         <div class="card-image">
+         	<a ng-href="#/chat/overwatch"><img class="responsive-img" src="public/img/overwatch.jpg"></a>
+         </div>
+         <div class="card-content">
+           <p>Overwatch</p>
+         </div>
+ 			</div>
+		 </div>
 </div>
