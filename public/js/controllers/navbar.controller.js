@@ -3,28 +3,22 @@
 
 	angular.module('gachat')
 
-	.controller('NavCtrl', ['$state', 'AuthenticationService', '$location', function($state, AuthenticationService, $location) {
+	.controller('NavCtrl', ['$scope', '$state', 'AuthenticationService', '$location', function($scope, $state, AuthenticationService, $location) {
 		const $ctrl = this;
 
 		console.log("this is NavCtrl");
-		// TEMPLATE IS NOT CONNECTED TO CONTROLLER ERROR!
-		$ctrl.getUser = getUser;
+
 		$ctrl.logout = logout;
 
 		activate();
 
 		function activate() {
-			$ctrl.loggedIn = false;
-		}
-
-		function getUser() {
-			$ctrl.userData = localStorage.getItem('User-Data')
-			//JSON.stringify(eval("(" + userData + ")"))
-			$ctrl.userData = JSON.parse($ctrl.userData)
-			$ctrl.userName = $ctrl.userData.data.email;
-			console.log($ctrl.loggedIn);
-			$ctrl.loggedIn = true;
-
+			console.log("nav", AuthenticationService.currentUser())
+			/*if (!AuthenticationService.currentUser()) {
+				$ctrl.loggedIn = false;
+			} else {
+				$ctrl.loggedIn = true;
+			}*/
 		}
 
 		function logout() {

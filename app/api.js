@@ -100,6 +100,10 @@ module.exports = function(app) {
 
   .post(profileController.updateBio);
 
+  router.route('/profile/getImage/:user')
+
+  .get(profileController.getImage);
+
 	app.use('/api', router);
 
 };

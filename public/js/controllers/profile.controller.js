@@ -11,6 +11,7 @@
 		$ctrl.deleteProfile = deleteProfile;
 		$ctrl.updateEmail = updateEmail;
 		$ctrl.updateBio = updateBio;
+		$ctrl.getImage = getImage;
 
 		console.log("this is ProfileCtrl");
 
@@ -22,6 +23,8 @@
 			} else {
 				$ctrl.user = AuthenticationService.currentUser();
 				$ctrl.email = $ctrl.user.email;
+				$ctrl.imageUrl = '';
+				getImage()
 			}
 		}
 
@@ -44,6 +47,18 @@
 			}
 		}
 
+		function getImage() {
+			console.log($ctrl.email)
+			const request = {
+				url: `/api/profile/getImage/${$ctrl.email}`
+			}
+
+			HttpFactory.get(request).then((res) => {
+				$ctrl.imageUrl = res.data.image;
+				$ctrl.imageUrl = `../../..${$ctrl.imageUrl}`
+			});
+		}
+
 		function deleteProfile() {
 			//const result = confirm("Are you sure that you want to delete your account?")
 			console.log("deleteing")
@@ -55,7 +70,6 @@
 				localStorage.removeItem('User-Data');
 				$location.url(['/login']);
 			});
-
 		}
 
 		function updateEmail() {

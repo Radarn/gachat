@@ -32,6 +32,13 @@
 
 .profile {
 	margin-top: 20px;
+	.profile-picture-container {
+		text-align: center;
+	}
+	.profile-picture {
+		max-height: 280px;
+		max-width: 280px;
+	}
 }
 
 .chat-box {

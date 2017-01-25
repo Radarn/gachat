@@ -98,3 +98,15 @@ module.exports.updateBio = function(req, res) {
     });
   });
 }
+
+module.exports.getImage = function(req, res) {
+  console.log("params", req.params)
+  const email = req.params.user
+
+  User.findOne({email: email}, (err, userData) => {
+    if (err)
+      console.log("didn't find user")
+    console.log("userData", userData);
+    res.json(userData);
+  });
+}
