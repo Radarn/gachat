@@ -10,19 +10,18 @@
 </head>
 <body ng-app="gachat" ng-cloak>
 	<div ng-include src="'public/templates/partials/navbar.html'" ng-controller="NavCtrl as $ctrl"></div>
-	<div class="container">
-		<div ui-view></div>
-	</div>
+		<div class="wrapper" ui-view></div>
 	<script type="text/javascript">
 		window.onbeforeunload = function() {
 	  localStorage.removeItem('User-Data');
 	  return '';
 		};
 	</script>
+
 	<script src="public/vendor/angular/angular.min.js"></script>
 	<script src="public/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="public/vendor/jquery/dist/jquery.min.js"></script>
-	<script src="node_modules/angular_messages/angular-messages.min.js"></script>
+	<script src="node_modules/angular-messages/angular-messages.min.js"></script>
 	<script src="public/vendor/materialize/dist/js/materialize.min.js"></script>
 
 	<script src="node_modules/ng-file-upload/dist/ng-file-upload.js"></script>

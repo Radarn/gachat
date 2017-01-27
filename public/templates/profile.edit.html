@@ -1,38 +1,64 @@
 <div class="edit-profile">
-
-  <div class="row edit-profile-field">
-    <div class="file-field input-field col s12 edit-profile-field" ngf-select ng-model="$ctrl.user.file" name="file" ngf-pattern="'image/*'"
-      accept="image/*">
-        <div class="btn">
-          <span>File</span>
-          <input type="file">
-        </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
-        </div>
-    </div>
-    <p>Recommended values for height and width are Minimum 200px and Maximum 280px. If your profile picture is not in line with the recommended values
-      your profile picture will be transformed into poor quality.
-    into poor quality</p>
-  </div>
-  <button ng-click="$ctrl.upload(e, $ctrl.user.file)" class="btn waves-effect waves-light" type="submit" name="action">Upload Photo</button>
-
-  <div class="row edit-profile-field">
-    <div class="input-field col s12">
-      <input id="textarea-email" type="text" class="validate" ng-model="$ctrl.user.newEmail">
-      <label for="textarea-email">Email</label>
-      <button ng-click="$ctrl.updateEmail()" class="btn waves-effect waves-light" type="submit" name="action">Update Email Adress</button>
+  <form name="editProfilePictureForm" ng-submit="$ctrl.uploadProfilePicture(e, $ctrl.user.file)">
+    <div class="row edit-profile-field">
+      <div class="file-field input-field col s12 edit-profile-field" ngf-select ng-model="$ctrl.user.file" name="file" ngf-pattern="'image/*'"
+        accept="image/*">
+          <div class="btn">
+            <span>File</span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+      </div>
+      <div ng-if="$ctrl.uploadSuccess === true">
+        <p class="green-text darken-1 upload-message">Your profile picture was successfully updated!</p>
+      </div>
+      <div ng-if="$ctrl.uploadSuccess === false">
+        <p class="red-text darken-1 upload-message">Error! Your profile picture was not updated!</p>
       </div>
     </div>
-    </div>
-  </div>
-
-  <div class="row edit-profile-field">
-    <div class="input-field col s12">
-      <textarea id="textarea-bio" class="materialize-textarea" length="120" ng-model="$ctrl.user.bio"></textarea>
-      <label for="textarea-bio">Your bio</label>
-      <button ng-click="$ctrl.updateBio()" class="btn waves-effect waves-light" type="submit" name="action">Update Bio</button>
-    </div>
-  </div>
-  </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Upload Photo</button>
+    <br/>
+      <i class="display-block margin-top-10">Recommended values for height and width are Minimum 200px and Maximum 280px. If your profile picture is not in line with the recommended values
+        your profile picture will be transformed into poor quality.
+      into poor quality</i>
+  </form>
+  <form name="editEmailForm" ng-submit="$ctrl.updateEmail()">
+    <div class="row edit-profile-field">
+      <div class="input-field col s12">
+        <input id="textarea-email" name="email" type="email" class="validate" ng-model="$ctrl.user.newEmail">
+        <label for="textarea-email">Email</label>
+        <div ng-messages="editEmailForm.email.$error"></div>
+        <div ng-if="$ctrl.emailUpdateSuccess === true">
+          <p class="green-text darken-1 upload-message">Your email was successfully updated!<p>
+        </div>
+        <div ng-if="$ctrl.emailUpdateSuccess === false">
+          <p class="green-text darken-1 upload-message">Error! Your email was not updated!<p>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Update Email Adress</button>
+        </div>
+      </div>
+    </form>
+    <form name="editBioForm" ng-submit="$ctrl.updateBio()">
+      <div class="row edit-profile-field">
+        <div class="input-field col s12">
+          <textarea id="textarea-bio" name="bio" class="materialize-textarea" length="120"
+            ng-model="$ctrl.user.bio" ng-minlength="50" ng-maxlength="1000"></textarea>
+          <label for="textarea-bio">Your bio</label>
+          <div ng-messages="editBioForm.bio.$error">
+            <div ng-if="$ctrl.bioLength === false">
+              <div ng-message="minlength" class="red-text darken-1">Bio is too short. Minimum characters allowed is 50</div>
+              <div ng-message="maxlength" class="red-text darken-1">Bio is too long. Minimum characters allowed is 1000</div>
+            </div>
+          </div>
+          <div ng-if="$ctrl.bioUpdateSuccess === true">
+            <p class="green-text darken-1 upload-message">Your bio was successfully updated!<p>
+          </div>
+          <div ng-if="$ctrl.bioUpdateSuccess === false">
+            <p class="red-text darken-1 upload-message">Error! Your bio was not updated!<p>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit" name="action">Update Bio</button>
+        </div>
+      </div>
+    </form>
 </div>

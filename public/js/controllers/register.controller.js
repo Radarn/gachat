@@ -26,6 +26,7 @@
 		}
 
 		function onSubmit() {
+			console.log($ctrl.credentials)
 			AuthenticationService
 			.register($ctrl.credentials)
 			.error((err) => {

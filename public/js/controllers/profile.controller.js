@@ -7,7 +7,7 @@
                           function(Upload, AuthenticationService, $http, $location, HttpFactory) {
 		const $ctrl = this;
 
-		$ctrl.upload = upload;
+		$ctrl.uploadProfilePicture = uploadProfilePicture;
 		$ctrl.deleteProfile = deleteProfile;
 		$ctrl.updateEmail = updateEmail;
 		$ctrl.updateBio = updateBio;
@@ -23,12 +23,19 @@
 			} else {
 				$ctrl.user = AuthenticationService.currentUser();
 				$ctrl.email = $ctrl.user.email;
-				$ctrl.imageUrl = '';
+				$ctrl.bioLength = true;
+				$ctrl.uploadSuccess;
+				$ctrl.bioUpdateSuccess;
+				$ctrl.emailUpdateSuccess;
+				/*$ctrl.credentials = {
+					bio: '',
+
+				}*/
 				getImage()
 			}
 		}
 
-		function upload(e, file) {
+		function uploadProfilePicture(e, file) {
 			console.log("file", file)
 			if(file) {
 				Upload.upload({
@@ -39,23 +46,27 @@
 				}).progress((evt) => {
 					console.log("firing");
 				}).success((data) => {
-					console.log("Success");
+					console.log("success")
+					$ctrl.uploadSuccess = true;
 				}).error((error) => {
-					console.log("Error")
-					console.log(error);
+					$ctrl.uploadSuccess = false;
+					console.log("error")
 				})
 			}
 		}
 
 		function getImage() {
 			console.log($ctrl.email)
+			console.log("get image")
 			const request = {
 				url: `/api/profile/getImage/${$ctrl.email}`
 			}
 
 			HttpFactory.get(request).then((res) => {
-				$ctrl.imageUrl = res.data.image;
-				$ctrl.imageUrl = `../../..${$ctrl.imageUrl}`
+				if (res.data.image) {
+					$ctrl.imageUrl = res.data.image;
+					$ctrl.imageUrl = `../../..${$ctrl.imageUrl}`
+				}
 			});
 		}
 
@@ -73,8 +84,6 @@
 		}
 
 		function updateEmail() {
-			console.log("updating email adress")
-			console.log("EMAIL", $ctrl.email)
 			const request = {
 				url: '/api/profile/updateEmail',
 				data: $ctrl.user
@@ -82,19 +91,31 @@
 
 			HttpFactory.post(request).then((res) => {
 				console.log(res)
+				if (res.data.newEmail === true) {
+					$ctrl.emailUpdateSuccess = true;
+				} else {
+					$ctrl.emailUpdateSuccess = false;
+				}
 			});
 		}
 
 		function updateBio() {
-			console.log("updating bio")
-			const request = {
-				url: '/api/profile/updateBio',
-				data: $ctrl.user
-			}
+			$ctrl.bioLength = false;
+			if ($ctrl.user.bio) {
+				const request = {
+					url: '/api/profile/updateBio',
+					data: $ctrl.user
+				}
 
-			HttpFactory.post(request).then((res) => {
-				console.log(res)
-			});
+				HttpFactory.post(request).then((res) => {
+					if (res.data.bio) {
+						console.log("success")
+						$ctrl.bioUpdateSuccess = true;
+					} else {
+						$ctrl.bioUpdateSuccess = false;
+					}
+				});
+			}
 		}
 
 	}]);

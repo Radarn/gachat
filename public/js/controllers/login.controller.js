@@ -2,8 +2,8 @@
 
 	angular.module('gachat')
 
-	.controller('LoginCtrl', ['$location',
-	 	'AuthenticationService', function($location, AuthenticationService) {
+	.controller('LoginCtrl', ['$state', '$location',
+	 	'AuthenticationService', function($state, $location, AuthenticationService) {
 		const $ctrl = this;
 		console.log("this is LoginCtrl ctrl");
 
@@ -16,6 +16,8 @@
 			if ($ctrl.user) {
 				$location.path('home');
 			}
+			$ctrl.currentStateName = $state.current.name;
+			$ctrl.password = true;
 			$ctrl.credentials = {
 				email : "",
 				password: ""
@@ -26,7 +28,7 @@
       AuthenticationService
       .login($ctrl.credentials)
       .error((err) => {
-        alert(err);
+				$ctrl.password = false
       })
       .then(() => {
 				console.log("LOGGED IN")

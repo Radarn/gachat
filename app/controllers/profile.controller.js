@@ -50,8 +50,10 @@ module.exports.updatePhoto = function(req, res) {
             res.json({status: 500})
 
           console.log("save successful");
+          req.on('timeout', function(){
+            res.json({status: 200})
+          })
 
-          res.json({status: 200})
         })
       });
     }
@@ -74,11 +76,13 @@ module.exports.updateEmail = function(req, res) {
         console.log("fail")
 
       console.log("successfully updated email")
+      res.send({newEmail: true})
     });
   });
 }
 
 module.exports.updateBio = function(req, res) {
+  console.log("bio body", req.body)
   const email = req.body.email
   const bio = req.body.bio
   console.log("BIO", bio);
@@ -95,6 +99,7 @@ module.exports.updateBio = function(req, res) {
         console.log("fail")
 
       console.log("successfully updated bio")
+      res.json(user)
     });
   });
 }

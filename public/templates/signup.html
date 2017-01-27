@@ -1,20 +1,32 @@
 <div class="row signup">
-      <form class="col s6 offset-s4" ng-submit="$ctrl.onSubmit()">
-            <h4 class="create-new-user">Create new user</h4>
-            <div class="row">
-                  <div class="input-field col s8">
-                        <input placeholder="Email" id="email" type="text" class="validate" ng-model="$ctrl.credentials.email">
-                        <label for="email">Email Adress</label>
-                  </div>
-            </div>
-            <div class="row">
-                  <div class="input-field col s8">
-                      <input placeholder="Password" id="password" type="text" class="validate" ng-model="$ctrl.credentials.password">
-                      <label for="password">Password</label>
-                  </div>
-            </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Register
-                  <i class="material-icons right">send</i>
-            </button>
-      </form>
+  <form name="signupForm" class="col s6 offset-s4" ng-submit="$ctrl.onSubmit()">
+    <h4 class="create-new-user">Create new user</h4>
+    <div class="row">
+      <div class="input-field col s8">
+        <input placeholder="Email" name="email" id="email" type="email" class="validate" ng-model="$ctrl.credentials.email" required>
+        <label for="email">Email Adress</label>
+        <div ng-messages="signupForm.email.$error">
+          <div ng-if="signupForm.email.$dirty">
+            <div ng-message="required" class="red-text darken-1">This field is required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s8">
+        <input placeholder="Password" name="password" id="password" type="text"
+          class="validate" ng-model="$ctrl.credentials.password" ng-minlength="6" required>
+        <label for="password">Password</label>
+        <div ng-messages="signupForm.password.$error">
+          <div ng-if="signupForm.password.$dirty">
+            <div ng-message="required" class="red-text darken-1">This field is required</div>
+            <div ng-message="minlength" class="red-text darken-1">Password must be over 6 characters</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Register
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
 </div>
