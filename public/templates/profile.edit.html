@@ -1,4 +1,5 @@
-<div class="edit-profile">
+<div class="edit-profile grey darken-4">
+  <div class="container">
   <form name="editProfilePictureForm" ng-submit="$ctrl.uploadProfilePicture(e, $ctrl.user.file)">
     <div class="row edit-profile-field">
       <div class="file-field input-field col s12 edit-profile-field" ngf-select ng-model="$ctrl.user.file" name="file" ngf-pattern="'image/*'"
@@ -8,7 +9,7 @@
             <input type="file">
           </div>
           <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
+            <input class="file-path validate grey-text text-lighten-5" type="text">
       </div>
       <div ng-if="$ctrl.uploadSuccess === true">
         <p class="green-text darken-1 upload-message">Your profile picture was successfully updated!</p>
@@ -19,14 +20,14 @@
     </div>
     <button class="btn waves-effect waves-light" type="submit" name="action">Upload Photo</button>
     <br/>
-      <i class="display-block margin-top-10">Recommended values for height and width are Minimum 200px and Maximum 280px. If your profile picture is not in line with the recommended values
+      <i class="display-block margin-top-10 grey-text text-lighten-5">Recommended values for height and width are Minimum 200px and Maximum 280px. If your profile picture is not in line with the recommended values
         your profile picture will be transformed into poor quality.
       into poor quality</i>
   </form>
   <form name="editEmailForm" ng-submit="$ctrl.updateEmail()">
     <div class="row edit-profile-field">
       <div class="input-field col s12">
-        <input id="textarea-email" name="email" type="email" class="validate" ng-model="$ctrl.user.newEmail">
+        <input id="textarea-email" name="email" type="email" class="validate grey-text text-lighten-5" ng-model="$ctrl.user.newEmail">
         <label for="textarea-email">Email</label>
         <div ng-messages="editEmailForm.email.$error"></div>
         <div ng-if="$ctrl.emailUpdateSuccess === true">
@@ -42,7 +43,7 @@
     <form name="editBioForm" ng-submit="$ctrl.updateBio()">
       <div class="row edit-profile-field">
         <div class="input-field col s12">
-          <textarea id="textarea-bio" name="bio" class="materialize-textarea" length="120"
+          <textarea id="textarea-bio" name="bio" class="materialize-textarea grey-text text-lighten-5" length="120"
             ng-model="$ctrl.user.bio" ng-minlength="50" ng-maxlength="1000"></textarea>
           <label for="textarea-bio">Your bio</label>
           <div ng-messages="editBioForm.bio.$error">
@@ -61,4 +62,6 @@
         </div>
       </div>
     </form>
+  </div>
+</div>
 </div>

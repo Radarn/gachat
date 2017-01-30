@@ -44,6 +44,13 @@ body {
   width: 100%;
 }
 
+.group-chat {
+  height: 100%;
+}
+
+.edit-profile {
+  height: 100%;
+}
 .edit-profile .edit-profile-field {
   padding-top: 20px !important;
 }
@@ -86,10 +93,13 @@ body {
 }
 
 .profile {
-  margin-top: 20px;
+  height: 100%;
 }
 .profile .profile-picture-container {
   text-align: center;
+}
+.profile .profile-info-box {
+  margin-top: 20px;
 }
 .profile .profile-picture {
   max-height: 280px;
@@ -107,6 +117,12 @@ body {
   border-bottom: 1px solid grey;
 }
 
+.home-menu {
+  height: 100%;
+}
 .home-menu img {
   height: 205px;
+}
+.home-menu .user-name {
+  cursor: pointer;
 }
