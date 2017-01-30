@@ -1,5 +1,9 @@
 <div class="edit-profile grey darken-4">
   <div class="container">
+    <div class="row">
+    <a class="back-btn" name="action"
+      ui-sref="profile">Back to Profile Page</a>
+    </div>
   <form name="editProfilePictureForm" ng-submit="$ctrl.uploadProfilePicture(e, $ctrl.user.file)">
     <div class="row edit-profile-field">
       <div class="file-field input-field col s12 edit-profile-field" ngf-select ng-model="$ctrl.user.file" name="file" ngf-pattern="'image/*'"

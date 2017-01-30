@@ -58,6 +58,9 @@ body {
   position: relative;
   bottom: 17px;
 }
+.edit-profile .back-btn {
+  cursor: pointer;
+}
 
 .unregistered-user-header, .login .user-login, .signup .create-new-user {
   margin-bottom: 20px;
