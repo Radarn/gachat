@@ -25,6 +25,10 @@ body {
 	margin: 10px;
 }
 
+.margin-left-0 {
+	margin-left: 0;
+}
+
 .margin-top-10 {
 	margin-top: 10px;
 }
@@ -63,28 +67,39 @@ body {
   -o-background-size: cover;
   background-size: cover;
 	height: 100%;
-	max-height:100%;
 	overflow-y: hidden;
 
 	.login-form {
 		background-color: rgba(0,0,0,0.8)
 	}
 	.btn-container {
-		margin-left: 0;
+		@extend .margin-left-0;
 	}
 	.form-holder {
 		background-color: rgba(0,0,0,0.7);
 	}
 
 	.user-login {
-		color: white;
 		@extend .unregistered-user-header;
 	}
 }
 
 .signup {
+	background: url('../img/nintendo.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	height: 100%;
+	overflow-y: hidden;
 	.create-new-user {
 		@extend .unregistered-user-header;
+	}
+	.signup-form {
+		background-color: rgba(0,0,0,0.8);
+	}
+	.btn-container {
+		@extend .margin-left-0;
 	}
 }
 

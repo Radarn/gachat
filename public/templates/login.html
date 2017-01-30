@@ -1,24 +1,24 @@
 <div class="login">
   <div class="container">
-  <div class="row">
-    <form name="loginForm" class="col s6 offset-s4 login-form" ng-submit="$ctrl.onSubmit()" required>
-      <h4 class="user-login">Log in</h4>
-        <div class="row">
-          <div class="input-field col s8">
-              <input id="email" name="email" type="email" class="validate grey-text text-lighten-5"
-                ng-model="$ctrl.credentials.email" required>
-              <label for="email">Email Adress</label>
-              <div ng-messages="loginForm.email.$error">
-                <div ng-if="loginForm.email.$dirty">
-                  <div ng-message="required" class="red-text darken-1">This field is required</div>
-                  <div ng-message="email" class="red-text darken-1">Your email address is invalid</div>
-                </div>
-              </div>
-          </div>
-        </div>
+    <div class="row">
+      <form name="loginForm" class="col s6 offset-s4 login-form" ng-submit="$ctrl.onSubmit()" required>
+        <h4 class="user-login grey-text text-lighten-5">Log in</h4>
           <div class="row">
             <div class="input-field col s8">
-              <input name="password" class="grey-text text-lighten-5" id="password" type="text"
+                <input id="email" name="email" type="email" class="validate grey-text text-lighten-5"
+                  ng-model="$ctrl.credentials.email" required>
+                <label for="email">Email Adress</label>
+                <div ng-messages="loginForm.email.$error">
+                  <div ng-if="loginForm.email.$dirty">
+                    <div ng-message="required" class="red-text darken-1">This field is required</div>
+                    <div ng-message="email" class="red-text darken-1">Your email address is invalid</div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s8">
+              <input name="password" class="validate grey-text text-lighten-5" id="password" type="text"
                 class="validate" ng-model="$ctrl.credentials.password" required>
               <label for="password">Password</label>
               <div ng-messages="loginForm.password.$error">
@@ -36,6 +36,7 @@
           <a class="btn waves-effect waves-light" name="action" href="#/signup">Create new user
             <i class="material-icons right">send</i>
           </a>
-        </div>
-    </div>
+          </div>
+      </div>
+  </div>
 </div>
