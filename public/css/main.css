@@ -105,6 +105,9 @@ body {
   max-height: 280px;
   max-width: 280px;
 }
+.profile .edit-profile-btn {
+  width: 110%;
+}
 
 .chat-box {
   height: 300px;
