@@ -9,6 +9,14 @@ const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart();
 const fs = require('fs-extra');
 const jwt = require('express-jwt');
+/*
+const sessionOptions = {
+  secret: process.env.SECRET,
+  name: process.env.SESSION_ID,
+  resave: false,
+  saveUninitialized: true
+};
+*/
 const auth = jwt({
   secret: 'MY_SECRET',
   userProperty: 'payload'
