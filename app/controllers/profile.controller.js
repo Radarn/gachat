@@ -25,7 +25,7 @@ module.exports.profileRead = (req, res) => {
 
 module.exports.updatePhoto = function(req, res) {
   const file = req.files.file;
-  const email = req.body.email
+  const email = req.body.email;
 
   console.log(`User ${email} is submitting`, file)
   // NEED TO MAKE THIS UNIQUE

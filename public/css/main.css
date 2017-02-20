@@ -10,8 +10,15 @@ body {
   height: 100%;
 }
 
+body {
+  background: url("../img/nintendo.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .wrapper {
-  height: 100%;
   min-width: 100%;
   display: flex;
   align-items: stretch;
@@ -44,6 +51,11 @@ body {
   width: 100%;
 }
 
+.container-black-card, .edit-profile .container, .group-chat .container {
+  padding: 2em;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .group-chat {
   height: 100%;
 }
@@ -67,11 +79,6 @@ body {
 }
 
 .login {
-  background: url("../img/nintendo.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
   height: 100%;
   overflow-y: hidden;
 }
@@ -83,11 +90,6 @@ body {
 }
 
 .signup {
-  background: url("../img/nintendo.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
   height: 100%;
   overflow-y: hidden;
 }
@@ -110,6 +112,19 @@ body {
 }
 .profile .edit-profile-btn {
   width: 110%;
+}
+
+body::-webkit-scrollbar {
+  width: 1em;
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
 
 .chat-box {

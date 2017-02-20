@@ -35,6 +35,7 @@
 				url: `/api/messages/${$ctrl.currentUrl}`
 			}
 			HttpFactory.post(newMessage).then((res) => {
+				$ctrl.chatMessage.newMessage = '';
 				$ctrl.getAllMessages();
 			})
 		}
